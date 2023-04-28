@@ -1,0 +1,42 @@
+
+----To connect to the DB
+kubectl exec -it postgresql-5bbb86f8c-rj7xj bash
+
+----To connect to the postgres
+psql -U postgres
+
+----to display all db
+\l
+
+
+employeedb
+
+employeedb
+
+
+kubectl exec -it mysql-5d5454767-j2qs6 /bin/bash
+
+mysql -h mysql -u root -p
+
+
+
+http://localhost:8585/employee/get
+
+http://localhost:8585/employee/get/by/101
+
+
+
+kubectl port-forward service/springboot-crud-svc 8446:8585
+
+curl -k https://localhost:8446/employee/get/by/111
+
+curl -k https://localhost:8446/employee/get
+
+
+curl https://192.168.49.2:30661/employee/get
+
+minikube service springboot-crud-svc
+
+ https://127.0.0.1:63728/employee/get
+ 
+ https://127.0.0.1:63728/employee/get/by/111

@@ -1,0 +1,23 @@
+CREATE DATABASE "EmployeeDB"
+
+CREATE TABLE Employee (
+  EmployeeID int PRIMARY KEY,
+  EmployeeName VARCHAR(50) NOT NULL,
+  DateOfBirth DATE NOT NULL
+);
+
+INSERT INTO Employee (EmployeeID, EmployeeName, DateOfBirth)
+VALUES
+  (101,'John Smith', '1990-05-12'),
+  (102,'Mary Johnson', '1995-07-24'),
+  (103,'David Lee', '1988-11-02'),
+  (104,'Karen Chen', '1992-03-18'),
+  (105,'Michael Davis', '1985-09-06'),
+  (106,'Emily Wang', '1993-02-22'),
+  (107,'Jason Kim', '1987-06-15'),
+  (108,'Sara Lee', '1994-08-31'),
+  (109,'Tom Chen', '1989-12-25'),
+  (110,'Alice Yang', '1991-04-08');
+
+
+select * from Employee;

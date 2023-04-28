@@ -1,0 +1,56 @@
+docker build -t my-app .
+docker-compose up
+
+
+docker exec -it employee-management-system-db-1  psql -U postgres
+
+
+docker run --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=employeedb -p 5432:5432 -d postgres
+docker run --name employee --link postgres:postgres -p 8445:8445 -d my-app
+
+
+
+docker run --name postgres -e POSTGRES_PASSWORD=admin -d postgres
+docker exec -it postgres  psql -U postgres
+
+
+
+INSERT INTO Employee (EmployeeID, employee_name, date_of_birth)
+VALUES
+  (111,'ALEN ANTONY', '1998-11-11'),
+  (222,'AJAY S', '1998-07-24'),
+  (333,'ARUN P', '1998-11-02'),
+  (444,'SAM GEORGE', '1997-03-18'),
+  (555,'ALBIN', '1998-09-06'),
+  (666,'AKSHAY S', '1993-02-22'),
+  (777,'ALICE M', '1987-06-15'),
+  (888,'ANGEL JOHN', '1994-08-31'),
+  (999,'ALFRED JOHN', '1989-12-25'),
+  (1111,'MARY S', '1991-04-08');
+
+
+INSERT INTO Employee (EmployeeID, employee_name, date_of_birth)
+VALUES
+  (101,'John Smith', '1990-05-12'),
+  (102,'Mary Johnson', '1995-07-24'),
+  (103,'David Lee', '1988-11-02'),
+  (104,'Karen Chen', '1992-03-18'),
+  (105,'Michael Davis', '1985-09-06'),
+  (106,'Emily Wang', '1993-02-22'),
+  (107,'Jason Kim', '1987-06-15'),
+  (108,'Sara Lee', '1994-08-31'),
+  (109,'Tom Chen', '1989-12-25'),
+  (110,'Alice Yang', '1991-04-08');
+
+
+
+
+docker network create my-network
+docker run --name my-postgres-db --network my-network -e POSTGRES_PASSWORD=admin -d postgres
+docker exec -it my-postgres-db  psql -U postgres
+
+insert queries 
+
+docker run --name my-spring-boot-app --network my-network -e SPRING_DATASOURCE_URL=jdbc:postgresql://my-postgres-db:5432/employeedb -e SPRING_DATASOURCE_USERNAME=postgres -e SPRING_DATASOURCE_PASSWORD=admin -p 8445:8445 my-app
+
+docker run --name my-spring-boot-app --network my-network -e SPRING_DATASOURCE_URL=jdbc:postgresql://my-postgres-db:5432/employeedb -e SPRING_DATASOURCE_USERNAME=postgres -e SPRING_DATASOURCE_PASSWORD=admin -p 8445:8445 alenantony30/my-app

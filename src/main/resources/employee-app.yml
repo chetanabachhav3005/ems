@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employee-server
+  template:
+    metadata:
+      labels:
+        app: employee-server
+    spec:
+      containers:
+       - image: alenantony30/my-app:latest
+         name: employee-server
+         ports:
+           - containerPort: 8445
+         env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: admin
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgresql:5432/employeedb?useSSL=false
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
